@@ -52,3 +52,6 @@ def granted(request, id):
     wish.granted_date = datetime.datetime.now()
     wish.save()
     return redirect('/wish')
+
+def newfunc():
+    pass
