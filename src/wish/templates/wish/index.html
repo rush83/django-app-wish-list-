@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% block body %} {% load crispy_forms_tags %}
+<div>
+    <h1>Your wish list:</h1>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Date Add</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for wish in wishes %}
+            <tr>
+                <td>{{ wish.item }}</td>
+                <td>{{ wish.created_at | date:'M d Y' }}</td>
+                <td>
+                    <a href="/wish/{{wish.id}}/edit" class="btn btn-primary">Edit</a>
+                    <a href="/wish/{{wish.id}}/delete" class="btn btn-danger">Delete</a>
+                    <a href="/wish/{{wish.id}}/granted" class="btn btn-success">Granted</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Granted wishes:</h1>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Wisher</th>
+                <th>Date Added</th>
+                <th>Date Granted</th>
+                <th>Likes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for wish in wishes_were_granted %}
+            <tr>
+                <td>{{ wish.item }}</td>
+                <td>{{ wish.user }}</td>
+                <td>{{ wish.created_at | date:'M d Y'}}</td>
+                <td>{{ wish.granted_date | date:'M d Y'}}</td>
+                <td></td>
+                <td>
+                    <a href="/wish/{{wish.id}}/granted" class="btn btn-success">Like</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

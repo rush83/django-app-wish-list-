@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block body %} {% load crispy_forms_tags %}
+<div>
+    <h1>Make wish:</h1>
+    <form action="" method="post">
+        {% csrf_token %} {{wish_form|crispy}}
+        <button class="btn btn-success">Save</button>
+    </form>
+
+</div>
+{% endblock %}
